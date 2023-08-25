@@ -1,13 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.swiper {
+  margin: 0 40px !important;
+  overflow: hidden !important;
+}
+
+.swiper-button-next {
+  background-image: url("../src/next.svg");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: center;
+  border-radius: 9999px;
+  background-color: #e9900c;
+  width: 36px !important;
+  height: 36px !important;
+  top: 50% !important;
+  right: 0 !important;
+}
+
+.swiper-button-next:hover {
+  background-color: #eb9b24;
+}
+
+.swiper-button-next::after {
+  display: none;
+}
+
+.swiper-button-prev {
+  background-image: url("../src/prev.svg");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: center;
+  border-radius: 9999px;
+  background-color: #e9900c;
+  width: 36px !important;
+  height: 36px !important;
+  top: 50% !important;
+  left: 0 !important;
+}
+
+.swiper-button-prev:hover {
+  background-color: #eb9b24;
+}
+
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-pagination-bullet {
+  background-color: #e9900c !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #e23b3b !important;
+}
+
+@media (max-width: 640px) {
+  .swiper {
+    margin: 0 10px !important;
+  }
+
+  .swiper-button-prev {
+    display: none !important;
+  }
+
+  .swiper-button-next {
+    display: none !important;
+  }
+}
+
+.customFile {
+  font-size: 17px;
+  border-width: 2px;
+  border-color: rgb(156, 163, 175);
+  color: rgb(107, 114, 128);
+  border-radius: 0.25rem;
+  line-height: 1.5rem;
+}
+
+.customFile::-webkit-file-upload-button {
+  font-size: 17px;
+  background-color: #e9900c;
+  color: white;
+  border: none;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+  .customFile {
+    font-size: 16px;
+  }
 }
