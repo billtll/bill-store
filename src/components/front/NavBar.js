@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Cart from "./Cart";
 import { scrollToAnchor } from "../../scrollUtils";
+import OrderTrackingModal from "./OrderTrackingModal";
 
 const NavBar = ({
   activeLink,
@@ -12,6 +13,8 @@ const NavBar = ({
 }) => {
   const [openNavBar, setOpenNavBar] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
+  const [orderTrackingModalIsOpen, setOrderTrackingModalIsOpen] =
+    useState(false);
 
   const links = [
     { name: "首頁", link: "/" },
@@ -31,6 +34,16 @@ const NavBar = ({
     }
   }, [location.hash]);
 
+  const openOrderTrackingModal = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOrderTrackingModalIsOpen(true);
+  };
+
+  const closeOrderTrackingModal = () => {
+    setOrderTrackingModalIsOpen(false);
+  };
+
   return (
     <>
       {cartIsOpen && (
@@ -41,6 +54,9 @@ const NavBar = ({
           getCartData={getCartData}
           setActiveLink={setActiveLink}
         />
+      )}
+      {orderTrackingModalIsOpen && (
+        <OrderTrackingModal onClose={closeOrderTrackingModal} />
       )}
       <div className="bg-[#fbe3d4] fixed w-full top-0 left-0 z-[999]">
         <div className="flex justify-between items-center bg-[#fbe3d4] px-4 py-2 mx-auto lg:max-w-[1320px]">
@@ -88,7 +104,7 @@ const NavBar = ({
               ))}
             </ul>
           </div>
-          <div className="flex justify-between items-center gap-3">
+          <div className="flex justify-between items-center gap-3 max-[300px]:gap-1">
             <div className="relative hover:before:absolute hover:before:bottom-[-65%] hover:before:left-[-5%] hover:before:content-['購物車'] hover:before:w-16 hover:before:text-[#c61212] hover:before:text-sm">
               <NavLink to="#">
                 <svg
@@ -111,6 +127,25 @@ const NavBar = ({
                     {cartData?.carts?.reduce((acc, cur) => acc + cur.qty, 0)}
                   </span>
                 )}
+              </NavLink>
+            </div>
+            <div className="relative hover:before:absolute hover:before:bottom-[-65%] hover:before:left-[-30%] hover:before:content-['訂單查詢'] hover:before:w-16 hover:before:text-[#c61212] hover:before:text-sm">
+              <NavLink to="#">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-7 h-7 cursor-pointer hover:text-[#c61212] lg:w-8 lg:h-8"
+                  onClick={openOrderTrackingModal}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+                  />
+                </svg>
               </NavLink>
             </div>
             <div className="relative hover:before:absolute hover:before:bottom-[-65%] hover:before:left-[-30%] hover:before:content-['後台系統'] hover:before:w-16 hover:before:text-[#c61212] hover:before:text-sm">

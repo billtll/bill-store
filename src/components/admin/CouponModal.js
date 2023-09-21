@@ -29,7 +29,7 @@ const CouponModal = ({
     if (["percent"].includes(name)) {
       setTempData({ ...tempData, [name]: +value });
     } else if (name === "is_enabled") {
-      setTempData({ ...tempData, [name]: checked });
+      setTempData({ ...tempData, [name]: +checked });
     } else {
       setTempData({ ...tempData, [name]: value });
     }

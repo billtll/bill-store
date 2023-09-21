@@ -29,7 +29,6 @@ const Login = () => {
         navigate("/admin/products");
       }
     } catch (error) {
-      // console.log(error.response.data);
       setLoginStatus(error.response.data);
       setIsLoading(false);
     }

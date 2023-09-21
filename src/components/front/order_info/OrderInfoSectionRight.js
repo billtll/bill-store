@@ -42,7 +42,7 @@ const OrderInfoSectionRight = () => {
       );
       getCartData();
       setIsLoading(false);
-      navigate(`/order-success/${res.data.orderId}`);
+      navigate(`/order-checkout/${res.data.orderId}`);
     } catch (error) {
       console.log(error);
     }

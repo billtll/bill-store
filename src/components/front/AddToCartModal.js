@@ -14,7 +14,7 @@ const AddToCartModal = ({ onClose, product }) => {
     setIsModalVisible(false);
     setTimeout(() => {
       onClose();
-    }, 500); // 延遲 500 毫秒後關閉 Cart 元件
+    }, 500);
   }, [onClose]);
 
   const handleBackdropClick = (e) => {

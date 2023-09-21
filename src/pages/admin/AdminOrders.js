@@ -1,16 +1,25 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
-import Pagination from "../../components/Pagination";
 import OrderModal from "../../components/admin/OrderModal";
+import DeleteModal from "../../components/DeleteModal";
+import Pagination from "../../components/Pagination";
+import {
+  MessageContext,
+  handleSuccessMessage,
+  handleErrorMessage,
+} from "../../store/messageStore";
 
 const AdminOrders = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const [pagination, setPagination] = useState({});
   const [orderModalIsOpen, setOrderModalIsOpen] = useState(false);
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
   const [tempOrder, setTempOrder] = useState({});
+
+  const [, dispatch] = useContext(MessageContext);
 
   const openOrderModal = (order) => {
     setTempOrder(order);
@@ -19,6 +28,15 @@ const AdminOrders = () => {
 
   const closeOrderModal = () => {
     setOrderModalIsOpen((preModalState) => !preModalState);
+  };
+
+  const openDeleteModal = (order) => {
+    setTempOrder(order);
+    setDeleteModalIsOpen((preModalState) => !preModalState);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalIsOpen((preModalState) => !preModalState);
   };
 
   const getOrders = async (page = 1) => {
@@ -36,6 +54,30 @@ const AdminOrders = () => {
     getOrders();
   }, []);
 
+  const deleteOrder = async (id) => {
+    try {
+      setIsLoading(true);
+      const res = await axios.delete(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/admin/order/${id}`
+      );
+
+      if (res.data.success) {
+        closeDeleteModal();
+        getOrders();
+      }
+
+      handleSuccessMessage(dispatch, res);
+      setIsLoading(false);
+    } catch (error) {
+      handleErrorMessage(dispatch, error);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log(tempOrder);
+  }, [tempOrder]);
+
   return (
     <>
       <div className="p-4">
@@ -44,6 +86,15 @@ const AdminOrders = () => {
             onCloseOrderModal={closeOrderModal}
             onGetOrders={getOrders}
             tempOrder={tempOrder}
+          />
+        )}
+        {deleteModalIsOpen && (
+          <DeleteModal
+            onCloseDeleteModal={closeDeleteModal}
+            text={`訂單: ${tempOrder.id} 購買用戶: ${tempOrder.user.name}`}
+            onDelete={deleteOrder}
+            id={tempOrder.id}
+            isLoading={isLoading}
           />
         )}
         <h3 className="text-xl lg:text-2xl font-semibold mb-3">訂單列表</h3>
@@ -109,7 +160,9 @@ const AdminOrders = () => {
                   <div className="flex items-center font-bold mr-1 lg:hidden">
                     訂單金額:
                   </div>
-                  <div className="flex items-center mr-3">NT${order.total}</div>
+                  <div className="flex items-center mr-3">
+                    NT${Math.floor(order.total)}
+                  </div>
                 </div>
                 <div className="flex w-full my-[6px] lg:my-0 lg:py-2 lg:border-b-2 lg:w-[14.285714%]">
                   <div className="flex items-center font-bold mr-1 lg:hidden">
@@ -127,7 +180,7 @@ const AdminOrders = () => {
                   <div className="flex items-center font-bold mr-1 lg:hidden">
                     餐點備註:
                   </div>
-                  <div className="flex items-center">{order.message}</div>
+                  <div className="flex items-center">{order?.message}</div>
                 </div>
                 <div className="flex w-full my-[6px] lg:my-0 lg:py-2 lg:border-b-2 lg:w-[14.285714%]">
                   <button
@@ -137,6 +190,14 @@ const AdminOrders = () => {
                     disabled={isLoading}
                   >
                     詳細資訊
+                  </button>
+                  <button
+                    type="button"
+                    className="border border-red-600 text-red-600 px-2 py-1 rounded hover:bg-red-600 hover:text-white"
+                    onClick={() => openDeleteModal(order)}
+                    disabled={isLoading}
+                  >
+                    刪除
                   </button>
                 </div>
               </div>

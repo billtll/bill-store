@@ -173,7 +173,9 @@ const OrderModal = ({ onCloseOrderModal, onGetOrders, tempOrder }) => {
               </div>
               <div className="flex text-[17px] text-[#1d020f] font-bold">
                 <div className="w-2/3 mt-1">總金額</div>
-                <div className="w-1/3 mt-1">NT${tempData.total}</div>
+                <div className="w-1/3 mt-1">
+                  NT${Math.floor(tempData.total)}
+                </div>
               </div>
             </div>
           )}

@@ -10,6 +10,7 @@ import About from "./pages/front/About";
 import Products from "./pages/front/Products";
 import ProductDetail from "./pages/front/ProductDetail";
 import OrderInfo from "./pages/front/OrderInfo";
+import OrderCheckout from "./pages/front/OrderCheckout";
 import OrderSuccess from "./pages/front/OrderSuccess";
 import Location from "./pages/front/Location";
 
@@ -23,6 +24,10 @@ function App() {
           <Route path="products" element={<Products />}></Route>
           <Route path="product/:id" element={<ProductDetail />}></Route>
           <Route path="order-info" element={<OrderInfo />}></Route>
+          <Route
+            path="order-checkout/:orderId"
+            element={<OrderCheckout />}
+          ></Route>
           <Route
             path="order-success/:orderId"
             element={<OrderSuccess />}

@@ -211,7 +211,7 @@ const Cart = ({
                     price={item.product.price}
                     unit={item.product.unit}
                     qty={item.qty}
-                    total={item.final_total}
+                    total={item.total}
                     onUpdateCartItem={(qty) => updateCartItem(item, qty)}
                     onRemoveCartItem={() => removeCartItem(item.id)}
                     isLoading={isLoading}
@@ -221,7 +221,7 @@ const Cart = ({
               </div>
               <div className="mb-2 flex justify-between text-lg font-bold">
                 <p>總計</p>
-                <p>NT${cartData.final_total}</p>
+                <p>NT${cartData.total}</p>
               </div>
               <Link to="/order-info">
                 <button

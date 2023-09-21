@@ -47,7 +47,6 @@ export const handleSuccessMessage = (dispatch, res) => {
 };
 
 export const handleErrorMessage = (dispatch, error) => {
-  console.log(error.response.data);
   dispatch({
     type: "POST_MESSAGE",
     payload: {

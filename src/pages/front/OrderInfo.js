@@ -49,7 +49,7 @@ const OrderInfo = () => {
         )}
         {cartData?.carts?.length > 0 && (
           <>
-            <OrderProcess process1={true} process2={false} />
+            <OrderProcess process1={true} process2={false} process3={false} />
             <div className="grid grid-cols-1 gap-4 mx-auto mb-10 xl:max-w-[1320px] lg:grid-cols-2 lg:justify-items-center">
               <OrderInfoSectionLeft />
               <OrderInfoSectionRight />

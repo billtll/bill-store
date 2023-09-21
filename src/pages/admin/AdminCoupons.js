@@ -33,8 +33,8 @@ const AdminCoupons = () => {
     setCouponModalIsOpen((preModalState) => !preModalState);
   };
 
-  const openDeleteModal = (product) => {
-    setTempCoupon(product);
+  const openDeleteModal = (coupon) => {
+    setTempCoupon(coupon);
     setDeleteModalIsOpen((preModalState) => !preModalState);
   };
 

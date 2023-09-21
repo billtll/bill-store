@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# 鮨漾壽司
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![鮨漾壽司首頁](https://i.imgur.com/9Slhjvy.png)
 
-## Available Scripts
+## GitHub Pages 網址連結
 
-In the project directory, you can run:
+```
+https://billtll.github.io/bill-store/
+```
 
-### `npm start`
+## 網站功能簡介
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+透過 React.js + Tailwind CSS 實作網站，可區分為前台及後台
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 前台
 
-### `npm test`
+- [x] 依類別篩選產品
+- [x] 將產品加入購物車
+- [x] 顯示購物車列表
+- [x] 編輯購物車產品數量
+- [x] 刪除購物車中的個別產品、全部產品
+- [x] 產品可套用優惠券
+- [x] 訂單資訊的表單驗證
+- [x] 送出訂單
+- [x] 可進行訂單查詢
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 後台(管理者)
 
-### `npm run build`
+- [x] 登入、登出
+- [x] 新增、刪除、修改產品
+- [x] 新增、刪除、修改優惠券
+- [x] 刪除、修改訂單
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 專案啟動流程
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> 請先安裝 [Node.js](https://nodejs.org/zh-tw/download)，Node.js 版本建議為：`18.17.0` 以上
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. 開啟終端機，執行以下指令
 
-### `npm run eject`
+```
+$ git clone https://github.com/billtll/bill-store.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 2. 進入專案資料夾
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+$ cd bill-store
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 3. 安裝套件
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+$ npm install
+```
 
-## Learn More
+### 4. 執行專案
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+$ npm start
+```

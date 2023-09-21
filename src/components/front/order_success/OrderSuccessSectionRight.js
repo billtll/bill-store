@@ -27,6 +27,9 @@ const OrderSuccessSectionRight = () => {
             </h2>
             <div className="text-justify text-[17px] font-bold mb-4">
               <p className="mb-4">親愛的顧客，感謝您透過本平台訂餐。</p>
+              <p className="mb-4 text-[#c61212] font-extrabold">
+                請記住您的訂單編號，方便日後查詢
+              </p>
               <p className="mb-4">
                 鮨漾壽司非常感激您的信任和支持，讓我們有機會為您提供美味的餐點和優質的服務。
               </p>

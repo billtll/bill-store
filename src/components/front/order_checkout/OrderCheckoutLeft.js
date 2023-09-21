@@ -1,35 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-
-const OrderSuccessSectionLeft = () => {
-  const [orderData, setOrderData] = useState({});
-  const { orderId } = useParams();
-
-  const getOrder = async (orderId) => {
-    const res = await axios.get(
-      `/v2/api/${process.env.REACT_APP_API_PATH}/order/${orderId}`
-    );
-    setOrderData(res.data.order);
-  };
-
-  useEffect(() => {
-    getOrder(orderId);
-  }, [orderId]);
-
+const OrderCheckoutLeft = ({ orderData }) => {
   return (
     <>
       <div className="w-full mt-5 px-4 md:px-10 lg:w-[90%] lg:mt-0">
         <h2 className="text-xl font-bold mb-4 lg:text-2xl">訂購餐點明細</h2>
-        <p className="mb-1 text-[17px] text-[#666] font-bold max-[360px]:text-sm">
-          訂單編號: <span className="text-[#c61212]">{orderData.id}</span>
-        </p>
-        <p className="mb-1 text-[17px] text-[#666] font-semibold max-[360px]:text-sm">
-          訂購者: {orderData.user?.name}
-        </p>
-        <p className="mb-1 text-[17px] text-[#666] font-semibold max-[360px]:text-sm">
-          聯絡電話: {orderData.user?.tel}
-        </p>
         <div className="border-t-2 mt-5 mb-3">
           {Object.values(orderData?.products || {}).map((item) => (
             <div
@@ -88,4 +61,4 @@ const OrderSuccessSectionLeft = () => {
   );
 };
 
-export default OrderSuccessSectionLeft;
+export default OrderCheckoutLeft;

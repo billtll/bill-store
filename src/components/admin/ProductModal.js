@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import Modal from "../UI/Modal";
 import axios from "axios";
 import {
@@ -25,14 +25,33 @@ const ProductModal = ({
     is_enabled: 1,
     imageUrl: "",
   });
+  const fileRef = useRef(null);
   const [, dispatch] = useContext(MessageContext);
+
+  const handleImageUpload = async () => {
+    try {
+      const file = fileRef.current.files[0];
+      const formData = new FormData();
+      formData.append("file-to-upload", file);
+      const res = await axios.post(
+        `/v2/api/${process.env.REACT_APP_API_PATH}/admin/upload`,
+        formData
+      );
+      setTempData({
+        ...tempData,
+        imageUrl: res.data.imageUrl,
+      });
+    } catch (error) {
+      handleErrorMessage(dispatch, error);
+    }
+  };
 
   const changeHandler = (e) => {
     const { name, value, checked } = e.target;
     if (["origin_price", "price"].includes(name)) {
       setTempData({ ...tempData, [name]: +value });
     } else if (name === "is_enabled") {
-      setTempData({ ...tempData, [name]: checked });
+      setTempData({ ...tempData, [name]: +checked });
     } else {
       setTempData({ ...tempData, [name]: value });
     }
@@ -114,6 +133,8 @@ const ProductModal = ({
               type="file"
               id="customFile"
               className="customFile"
+              ref={fileRef}
+              onChange={handleImageUpload}
               disabled={isLoading}
             />
           </div>
